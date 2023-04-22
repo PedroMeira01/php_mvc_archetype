@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+    env_file: ./.env
+    image: phmeira/php_mvc
+    ports:
+      - "8080:80"
+    volumes:
+      - .:/var/www/html/

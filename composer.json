@@ -1,0 +1,9 @@
+{
+    "name": "phmeira/php-mvc-archetype",
+    "autoload": {
+        "psr-4": {
+            "PHPMVCArchetype\\": "src/"
+        }
+    },
+    "require": {}
+}
