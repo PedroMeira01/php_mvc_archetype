@@ -1,2 +1,6 @@
 RewriteEngine On
+# Redireciona todas as requisições ao "/" para public omitindo a pasta da url
 RewriteRule ^$ public/ [L]
+# Caso a requisição não encontre um arquivo de mesmo nome, redireciona para index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^ public/index.php [QSA,L]

@@ -2,7 +2,7 @@
     "name": "phmeira/php-mvc-archetype",
     "autoload": {
         "psr-4": {
-            "PHPMVCArchetype\\": "src/"
+            "Archetype\\": "src/Modules/"
         }
     },
     "require": {}
