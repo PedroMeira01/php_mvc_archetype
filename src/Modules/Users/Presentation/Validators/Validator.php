@@ -2,7 +2,7 @@
 
 namespace Archetype\Users\Presentation\Validators;
 
-class Validators 
+class Validator
 {
     private $errors = [];
 

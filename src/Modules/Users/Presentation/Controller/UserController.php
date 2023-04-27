@@ -3,6 +3,7 @@
 namespace Archetype\Users\Presentation\Controller;
 
 use Archetype\Shared\Presentation\Controller\Controller;
+use Archetype\Users\Application\UseCases\DTO\InputStoreUserDTO;
 use Archetype\Users\Presentation\Validators\CreateUserValidator;
 
 class UserController extends Controller
@@ -18,8 +19,19 @@ class UserController extends Controller
         $validation = CreateUserValidator::validate($request);
 
         if ($validation->hasErrors()) {
-           return $this->view('Users', 'create-user', ['errors' => $validator->getErrors()]);
+            return $this->view('Users', 'create-user', [
+                'errors' => $validation->getErrors(),
+                'formData' => $request
+            ]);
         }
+
+        extract($request);
+
+        $inputStoreUserDTO = new InputStoreUserDTO($name, $email, $password);
+        $createUserUseCase = new CreateUserUseCase();
+        $createUserUseCase->execute($inputStoreUserDTO);
+        
+        return $this->redirect('/login');
     }
 
     public function edit()

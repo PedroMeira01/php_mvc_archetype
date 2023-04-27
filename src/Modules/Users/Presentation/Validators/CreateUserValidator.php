@@ -21,7 +21,12 @@ class CreateUserValidator
         }
 
         if (strlen($input['password']) < 6) {
-            $validator->addErrors('password', 'O campo senha é obrigatório');
+            $validator->addErrors('password', 'A senha deve ter ao menos 6 digitos');
+        }
+
+        if ($input['password'] !== $input['confirmPassword']) {
+            $validator->addErrors('password', 'As senhas não coincidem');
+            $validator->addErrors('confirmPassword', 'As senhas não coincidem');
         }
 
         return $validator;
