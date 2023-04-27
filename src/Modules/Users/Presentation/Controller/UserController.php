@@ -3,19 +3,23 @@
 namespace Archetype\Users\Presentation\Controller;
 
 use Archetype\Shared\Presentation\Controller\Controller;
+use Archetype\Users\Presentation\Validators\CreateUserValidator;
 
 class UserController extends Controller
 {
-    private $input;
 
     public function create() 
     {
         return $this->view('Users', 'create-user');
     }
 
-    public function store($input) 
+    public function store($request) 
     {
-        echo "Chegou aqui";
+        $validation = CreateUserValidator::validate($request);
+
+        if ($validation->hasErrors()) {
+           return $this->view('Users', 'create-user', ['errors' => $validator->getErrors()]);
+        }
     }
 
     public function edit()

@@ -8,6 +8,7 @@ require __DIR__ . '/../vendor/autoload.php';
 
 use Archetype\Users\Presentation\Controller\UserController;
 use Archetype\StaticPages\Presentation\Controller\StaticPagesController;
+use Archetype\Authentication\Presentation\Controller\AuthenticationController;
 
 $routes = array(
     // Static Pages
@@ -15,7 +16,12 @@ $routes = array(
         $controller = new StaticPagesController();
         $controller->showHome();
     },
-    
+
+    "/login" => function () {
+        $controller = new AuthenticationController();
+        $controller->login();
+    },
+
     // User 
     "/user/create" => function () {
         $controller = new UserController();
